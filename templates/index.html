@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Thiệp 8/3</title>
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: linear-gradient(135deg, #ff9acb, #ff4fa3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+}
+
+.box {
+    width: 150px;
+    height: 150px;
+    background: #ff2f92;
+    position: relative;
+    margin: auto;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.lid {
+    width: 150px;
+    height: 40px;
+    background: #ff69b4;
+    position: absolute;
+    top: -40px;
+    left: 0;
+    border-radius: 10px 10px 0 0;
+    transition: 0.5s;
+}
+
+.heart {
+    position: absolute;
+    font-size: 40px;
+    opacity: 0;
+}
+
+.message {
+    margin-top: 30px;
+    font-size: 22px;
+    color: white;
+    opacity: 0;
+    transition: 1s;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="box" onclick="openBox()">
+        <div class="lid" id="lid"></div>
+    </div>
+    <div class="message" id="message">
+        Chúc mừng 8/3 💖
+    </div>
+</div>
+
+<script>
+function openBox() {
+    document.getElementById("lid").style.transform = "translateY(-60px)";
+    
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    document.body.appendChild(heart);
+
+    heart.style.left = "50%";
+    heart.style.top = "50%";
+    heart.style.opacity = "1";
+
+    heart.animate([
+        { transform: "translate(-50%, -50%) scale(1)", opacity: 1 },
+        { transform: "translate(-50%, -200%) scale(1.5)", opacity: 0 }
+    ], {
+        duration: 2000,
+        fill: "forwards"
+    });
+
+    setTimeout(() => {
+        heart.remove();
+        document.getElementById("message").style.opacity = "1";
+    }, 2000);
+}
+</script>
+
+</body>
+</html>
